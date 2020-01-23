@@ -17,8 +17,9 @@ jobs:
           git add build/test.js
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Add changes" -a
+          git commit -m "Docs for version " -a
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repository: git@github.com:kevhender/test-actions.git
