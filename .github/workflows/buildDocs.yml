@@ -14,6 +14,10 @@ jobs:
         run: npm run build
       - name: Commit files
         run: |
+          echo $(pwd)
+          cd ..
+          git clone git@github.com:kevhender/kevhender.github.io.git
+          echo $(ls)
           git add build/test.js
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
