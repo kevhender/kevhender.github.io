@@ -1,0 +1,12 @@
+name: Build API Docs
+
+on: push
+
+jobs:
+  test_build:
+    runs-on: ubuntu-latest
+
+    name: Testing the build
+    steps:
+      - uses: actions/setup-node@v1
+      - run: npm run build

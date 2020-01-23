@@ -1,0 +1,19 @@
+{
+  "name": "kevhender.github.io",
+  "version": "1.0.0",
+  "description": "Testing",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p build && node buildDocs.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevhender/kevhender.github.io.git"
+  },
+  "author": "Kevin Henderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevhender/kevhender.github.io/issues"
+  },
+  "homepage": "https://github.com/kevhender/kevhender.github.io#readme"
+}
