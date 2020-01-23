@@ -17,7 +17,8 @@ jobs:
           cd ..
           git clone https://kevhender:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kevhender/test-actions.git
           cd test-actions
-          git add build/test.js
+          cp ../kevhender.github.io/build/test.js .
+          git add test.js
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m "Docs for version " -a
