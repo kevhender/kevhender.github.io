@@ -16,7 +16,7 @@ jobs:
         run: |
           echo $(pwd)
           cd ..
-          git clone kevhender:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com:kevhender/test-actions.git
+          git clone https://kevhender:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kevhender/test-actions.git
           echo $(ls)
           git add build/test.js
           git config --local user.email "action@github.com"
