@@ -18,6 +18,7 @@ jobs:
         run: |
           VERSION=$(npm run release | rev | cut -d'@' -f 1 | rev)
           echo "::set-output name=version::${VERSION}"
+          echo "WTF ${VERSION}"
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
       - name: Print info
