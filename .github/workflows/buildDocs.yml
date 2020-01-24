@@ -3,16 +3,24 @@ name: Build API Docs
 on: push
 
 jobs:
-  test_build:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        id: create_draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+  upload_release_docs:
     runs-on: ubuntu-latest
 
-    name: Testing the build
+    name: Generate and upload docs
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - name: Create file
+      - name: Generate docs metadata file
         run: npm run build
-      - name: Commit files
+      - name: Commit and push docs metadata file
         run: |
           cd ..
           git clone https://kevhender:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kevhender/test-actions.git
@@ -20,8 +28,10 @@ jobs:
           git fetch
           git pull
           cp ../kevhender.github.io/build/test.js .
-          git add test.js
+          VERSION=$(echo "${{ steps.create_draft.outputs.html_url }}" | rev | cut -d'/' -f 1 | rev
+          mv test.js ${VERSION}.js
+          git add ${VERSION}.js
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Docs for version " -a
+          git commit -m "Docs for version ${VERSION}" -a
           git push -u origin
