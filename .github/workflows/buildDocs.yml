@@ -12,6 +12,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
   upload_release_docs:
+    needs: update_release_draft
     runs-on: ubuntu-latest
 
     name: Generate and upload docs
