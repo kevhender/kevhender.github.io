@@ -25,7 +25,7 @@ jobs:
           git pull
           mkdir ${VERSION}
           cp ../kevhender.github.io/build/test.js ${VERSION}
-          echo -e ",\n${VERSION}" >> versions.csv
+          sed -i '$ s/$/,\n${VERSION}' versions.csv
           git add ${VERSION}/test.js versions.csv
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
