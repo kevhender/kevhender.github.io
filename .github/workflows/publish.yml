@@ -1,0 +1,27 @@
+name: Publish to NPM
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - name: Publish to npm
+        id: publish_release
+        run: |
+          VERSION=$(npm run release | rev | cut -d'@' -f 1 | rev)
+          echo "::set-output name=version::${VERSION}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: Print info
+        run: |
+          echo "---- TEST -----"
+          echo "${{ steps.publish_release.outputs.version }}"
+          echo "---- END TEST -----"

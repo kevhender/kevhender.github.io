@@ -1,10 +1,11 @@
 {
   "name": "kevhender.github.io",
-  "version": "1.0.2",
+  "version": "1.1.2",
   "description": "Testing",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir -p build && node buildDocs.js"
+    "build": "mkdir -p build && node buildDocs.js",
+    "release": "npm publish && cd .. && cd kevhender.github.io"
   },
   "repository": {
     "type": "git",

@@ -7,25 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v5
-        id: create_draft
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      - name: Print meta
-        run: |
-          echo "---- TEST -----"
-          echo "${{ steps.create_draft.outputs.id }}"
-          echo "${{ steps.create_draft.outputs.html_url }}"
-          echo "${{ steps.create_draft.outputs.upload_url }}"
-          echo "---- END TEST -----"
-
-  upload_release_docs:
-    needs: update_release_draft
-    runs-on: ubuntu-latest
-
-    name: Generate and upload docs
-    steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
+        id: create_draft
+        with:
+          config-name: release-draft-template
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Generate docs metadata file
         run: npm run build
       - name: Commit and push docs metadata file
