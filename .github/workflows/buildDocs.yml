@@ -11,7 +11,7 @@ jobs:
       - uses: release-drafter/release-drafter@v5
         id: create_draft
         with:
-          config-name: release-draft-template
+          config-name: release-draft-template.yml
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 #      - name: Generate docs metadata file
