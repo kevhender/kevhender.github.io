@@ -15,13 +15,14 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Publish to npm
         run: |
-          VERSION="v$(npm run release | rev | cut -d'@' -f 1 | rev)"
+          OUTPUT=$(npm run release)
+          VERSION=v$(echo $OUTPUT | rev | cut -d'@' -f 1 | rev)
+          echo "VERSION: [${VERSION}]"
           cd ..
           git clone https://kevhender:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kevhender/test-actions.git
           cd test-actions
           git fetch
           git pull
-          echo "VERSION: [${VERSION}]"
           mkdir ${VERSION}
           cp ../kevhender.github.io/build/test.js ${VERSION}
           git add ${VERSION}/test.js
