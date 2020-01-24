@@ -6,9 +6,9 @@ jobs:
   update_release_draft:
     runs-on: ubuntu-latest
     steps:
+#      - uses: actions/checkout@v1
+#      - uses: actions/setup-node@v1
       - uses: release-drafter/release-drafter@v5
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
         id: create_draft
         with:
           config-name: release-draft-template
