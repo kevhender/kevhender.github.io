@@ -28,7 +28,7 @@ jobs:
           git fetch
           git pull
           cp ../kevhender.github.io/build/test.js .
-          VERSION=$(echo "${{ steps.create_draft.outputs.html_url }}" | rev | cut -d'/' -f 1 | rev
+          VERSION=$(echo "${{ steps.create_draft.outputs.html_url }}" | rev | cut -d'/' -f 1 | rev)
           mv test.js ${VERSION}.js
           git add ${VERSION}.js
           git config --local user.email "action@github.com"
