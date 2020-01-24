@@ -15,10 +15,12 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Publish to npm
         id: publish_release
+        outputs:
+          version:
+            description: The version that gets released
         run: |
           VERSION=$(npm run release | rev | cut -d'@' -f 1 | rev)
           echo "::set-output name=version::${VERSION}"
-          echo "WTF ${VERSION}"
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
       - name: Print info
