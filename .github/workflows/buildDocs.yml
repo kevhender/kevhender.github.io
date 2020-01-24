@@ -23,6 +23,11 @@ jobs:
         run: npm run build
       - name: Commit and push docs metadata file
         run: |
+          echo "---- TEST -----"
+          echo "${{ steps.create_draft.outputs.id }}"
+          echo "${{ steps.create_draft.outputs.html_url }}"
+          echo "${{ steps.create_draft.outputs.upload_url }}"
+          echo "---- END TEST -----"
           cd ..
           git clone https://kevhender:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kevhender/test-actions.git
           cd test-actions
