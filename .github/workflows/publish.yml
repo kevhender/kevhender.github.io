@@ -21,6 +21,7 @@ jobs:
           cd test-actions
           git fetch
           git pull
+          echo "VERSION: [${VERSION}]"
           mkdir ${VERSION}
           cp ../kevhender.github.io/build/test.js ${VERSION}
           git add ${VERSION}/test.js
