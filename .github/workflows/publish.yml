@@ -14,9 +14,17 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - name: Publish to npm
+        id: publish_to_npm
+        shell: pwsh
         run: |
           OUTPUT=$(npm run release)
           VERSION=v$(echo $OUTPUT | rev | cut -d'@' -f 1 | rev)
+          echo "::set-output name=version::${VERSION}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: Update docs
+        run: |
+          VERSION=${{ steps.publish_to_npm.output.version }}
           echo "VERSION: [${VERSION}]"
           cd ..
           git clone https://kevhender:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kevhender/test-actions.git
