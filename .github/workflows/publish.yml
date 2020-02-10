@@ -28,7 +28,7 @@ jobs:
           cp ../kevhender.github.io/build/test.js ${VERSION}
           cp ../react-storefront-docs/guides/* ${VERSION}
           sed -i "$ s/$/,\n${VERSION}/" versions.csv
-          git add ${VERSION}/test.js versions.csv
+          git add -A
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m "Docs for version ${VERSION}" -a
