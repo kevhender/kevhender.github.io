@@ -20,11 +20,13 @@ jobs:
           echo "VERSION: [${VERSION}]"
           cd ..
           git clone https://kevhender:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kevhender/test-actions.git
+          git clone https://kevhender:${{ secrets.MOOVWEB_GITHUB_TOKEN }}@github.com/moovweb/react-storefront-docs.git
           cd test-actions
           git fetch
           git pull
           mkdir ${VERSION}
           cp ../kevhender.github.io/build/test.js ${VERSION}
+          cp ../react-storefront-docs/guides/* ${VERSION}
           sed -i "$ s/$/,\n${VERSION}/" versions.csv
           git add ${VERSION}/test.js versions.csv
           git config --local user.email "action@github.com"
